@@ -26,7 +26,7 @@ by a certificate authority, but this can't be fixed.
 
 ## What changes can be made in core to support HTTP/2 better?
 
-The WP function `[is_ssl()](https://github.com/WordPress/WordPress/blob/master/wp-includes/functions.php#L3748)`
+The WP function [`is_ssl()`](https://github.com/WordPress/WordPress/blob/master/wp-includes/functions.php#L3748)
 doesn't work properly and causes a redirect loop when serving the application through an HTTPS proxy
 that runs the web server over HTTP.
 
