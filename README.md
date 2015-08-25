@@ -2,12 +2,12 @@
 
 ## HTTP/2 support
 
-*Browsers* HTTP/2 is supported in the latest version of most major browsers (see [compat chart](http://caniuse.com/#feat=http2)).
+**Browsers** HTTP/2 is supported in the latest version of most major browsers (see [compat chart](http://caniuse.com/#feat=http2)).
 
-*NGINX* HTTP/2 support is in alpha (see [alpha release notes](https://www.nginx.com/blog/early-alpha-patch-http2/)).
+**NGINX** HTTP/2 support is in alpha (see [alpha release notes](https://www.nginx.com/blog/early-alpha-patch-http2/)).
 They have not committed to Server Push.
 
-*Apache* HTTP/2 support is in alpha via [a module](https://github.com/icing/mod_h2).
+**Apache** HTTP/2 support is in alpha via [a module](https://github.com/icing/mod_h2).
 
 [nghttp2](https://nghttp2.org/) includes an HTTP/2 web server and a proxy.
 
