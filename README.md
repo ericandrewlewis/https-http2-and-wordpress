@@ -33,3 +33,8 @@ that runs the web server over HTTP.
 ## How to upgrade a WP site to HTTPS / HTTP/2?
 
 [Zack has done a ton of this already](https://www.tollmanz.com/wordpress-https-mixed-content-detector-1-1-0-update/). A canonical step-by-step guide would be good.
+
+Placing WordPress behind an HTTPS proxy that requests WordPress over HTTP causes
+WordPress to think it's running over HTTP (i.e. `is_ssl()` will return false).
+Modifying `$_SERVER` variables in `wp-config.php` is the suggested configuration.
+See trac tickets #9235, #19654, #31288.
