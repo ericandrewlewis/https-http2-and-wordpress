@@ -1,15 +1,27 @@
-# HTTP/2 and WordPress
+# HTTPS, HTTP/2 and WordPress
+
+[HTTP/2](https://http2.github.io/) is the next version of the HTTP protocol with
+a focus on performance.
+
+[See a demo of HTTP/2](http://www.http2demo.io/)
+
+THe HTTP/2 spec [does not require encryption](https://http2.github.io/faq/#does-http2-require-encryption),
+but all browser implementations require encryption. That means implementing HTTP/2
+requires HTTPS.
 
 ## HTTP/2 support
 
-**Browsers** HTTP/2 is supported in the latest version of most major browsers (see [compat chart](http://caniuse.com/#feat=http2)).
+The latest versions of most major browsers support HTTP/2 (see [compat chart](http://caniuse.com/#feat=http2)).
 
-**NGINX** HTTP/2 support is in alpha (see [alpha release notes](https://www.nginx.com/blog/early-alpha-patch-http2/)).
-They have not committed to Server Push.
+Both NGINX and Apache are working on HTTP/2 support.
 
-**Apache** HTTP/2 support is in alpha via [a module](https://github.com/icing/mod_h2).
+NGINX has a patch for HTTP/2 (see [alpha release notes](https://www.nginx.com/blog/early-alpha-patch-http2/)).
+They have not committed to supporting Server Push.
 
-[nghttp2](https://nghttp2.org/) includes an HTTP/2 web server and a proxy.
+An [Apache module](https://github.com/icing/mod_h2) is in alpha for HTTP/2 support.
+
+[nghttp2](https://nghttp2.org/) includes an HTTP/2 proxy, which is the least invasive
+way to support the protocol today.
 
 ## How to test HTTPS and HTTP/2 locally?
 
