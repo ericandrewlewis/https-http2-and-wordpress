@@ -19,8 +19,12 @@ To set up HTTPS a self-signed TLS certificate will be required, here's [a guide]
 during provisioning, although the default sites are configured for http.
 The `siteurl` and `home` options need to be modified to specify the https protocol.
 
-Browsers will throw warnings because the self-signed certificate isn't recognized
-by a certificate authority, but this can't be fixed.
+Browsers will issue warnings like "this site might be trying to steal your data"
+and a red cross through the HTTPS locl icon. This is because a certificate needs to
+be recognized by a certificate authority to validate that you are indeed receiving
+data from the organization you think you are, and not a MITM. This can't be fixed,
+unless you were to buy a domain name and pass your self-signed certificate to a certificate
+authority. Ignore the warnings.
 
 [Fork of VVV with nghttpx as an HTTP/2 proxy](https://github.com/ericandrewlewis/VVV/tree/http2).
 
