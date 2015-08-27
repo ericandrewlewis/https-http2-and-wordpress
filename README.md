@@ -23,43 +23,11 @@ This is a way to support the protocol without running alpha versions of web serv
 
 The HTTP/2 organization lists [a horde of other implementations](https://github.com/http2/http2-spec/wiki/Implementations).
 
-## Transition a site to HTTPS
+## HTTPS and HTTP/2 setup guides
 
-### Switch any embedded content loaded over HTTP to HTTPS
+[HTTPS Setup Guide](/https-setup-guide.md)
 
-Zack Tollman's [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/)
-will log all embedded content loaded over HTTP.
-
-### Set up a testing environment for enabling HTTPS
-
-To configure a site to run HTTPS in a development environment, a self-signed TLS
-certificate is required. Here's [a guide](http://www.akadia.com/services/ssh_test_certificate.html).
-
-[VVV](https://github.com/Varying-Vagrant-Vagrants/VVV), a popular development
-environment for WordPress, [creates a cert and encryption key](https://github.com/Varying-Vagrant-Vagrants/VVV/blob/v1.1/provision/provision.sh#L233-L246),
-although the default sites are [setup for HTTP](https://github.com/Varying-Vagrant-Vagrants/VVV/blob/v1.1/provision/provision.sh#L470).
-
-Browsers will issue warnings like "this site might be trying to steal your data"
-and a red cross through the HTTPS locl icon. This is because a certificate needs to
-be recognized by a certificate authority to validate that you are indeed receiving
-data from the organization you think you are, and not a MITM. This can't be fixed,
-unless you were to buy a domain name and pass your self-signed certificate to a certificate
-authority. Ignore the warnings.
-
-## Transition a site to HTTP/2
-
-### Set up a testing environment for enabling HTTP/2
-
-We've created [a fork of VVV with HTTP/2 enabled](https://github.com/ericandrewlewis/VVV/tree/http2).
-This is done by using nghttpx as an HTTP/2 proxy.
-
-## What changes can be made in core to support HTTP/2 better?
-
-The WP function [`is_ssl()`](https://github.com/WordPress/WordPress/blob/master/wp-includes/functions.php#L3748)
-doesn't work properly and causes a redirect loop when serving the application through an HTTPS proxy
-that runs the web server over HTTP.
-
-Should concatenation of assets be modified for HTTP/2?
+[HTTP/2 Setup Guide](/http2-setup-guide.md)
 
 ## Other notes
 
