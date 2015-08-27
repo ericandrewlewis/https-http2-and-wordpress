@@ -1,6 +1,6 @@
-## Transition a site to HTTP/2
+# Transition a site to HTTP/2
 
-### Set up a testing environment for enabling HTTP/2
+## Set up a testing environment for enabling HTTP/2
 
 We've created [a fork of VVV with HTTP/2 enabled](https://github.com/ericandrewlewis/VVV/tree/http2).
 This is done by using nghttpx as an HTTP/2 proxy.

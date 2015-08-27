@@ -1,11 +1,11 @@
-## HTTPS Setup Guide
+# HTTPS Setup Guide
 
-### Switch any embedded content loaded over HTTP to HTTPS
+## Switch any embedded content loaded over HTTP to HTTPS
 
 Zack Tollman's [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/)
 will log all embedded content loaded over HTTP.
 
-### Set up a testing environment for enabling HTTPS
+## Set up a testing environment for enabling HTTPS
 
 To configure a site to run HTTPS in a development environment, a self-signed TLS
 certificate is required. Here's [a guide](http://www.akadia.com/services/ssh_test_certificate.html).
@@ -20,3 +20,10 @@ be recognized by a certificate authority to validate that you are indeed receivi
 data from the organization you think you are, and not a MITM. This can't be fixed,
 unless you were to buy a domain name and pass your self-signed certificate to a certificate
 authority. Ignore the warnings.
+
+## Existing Guides
+
+[User handbook](https://make.wordpress.org/support/user-manual/web-publishing/https-for-wordpress/)
+
+[WP Beginner](http://www.wpbeginner.com/wp-tutorials/how-to-add-ssl-and-https-in-wordpress/)
+
