@@ -3,7 +3,7 @@
 [HTTP/2](https://http2.github.io/) is the next version of the HTTP protocol with
 a focus on performance.
 
-[Compare HTTP/1.1 and 2 with varying latency]([Compare HTTP/1.1 to HTTP/2 with varying latency](http://http2.golang.org/gophertiles?latency=1000)).
+[Compare HTTP/1.1 and 2 with varying latency](http://http2.golang.org/gophertiles?latency=1000).
 
 All browser implementations require encryption, which means HTTPS is a requirement for HTTP/2.
 
