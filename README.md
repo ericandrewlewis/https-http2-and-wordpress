@@ -23,6 +23,8 @@ An [Apache module](https://github.com/icing/mod_h2) is in alpha for HTTP/2 suppo
 [nghttp2](https://nghttp2.org/) includes an HTTP/2 proxy, which is the least invasive
 way to support the protocol today.
 
+The HTTP/2 organization lists [a horde of other implementations](https://github.com/http2/http2-spec/wiki/Implementations).
+
 ## How to test HTTPS and HTTP/2 locally?
 
 To set up HTTPS a self-signed TLS certificate will be required, here's [a guide](http://www.akadia.com/services/ssh_test_certificate.html).
@@ -54,3 +56,7 @@ Placing WordPress behind an HTTPS proxy that requests WordPress over HTTP causes
 WordPress to think it's running over HTTP (i.e. `is_ssl()` will return false).
 Modifying `$_SERVER` variables in `wp-config.php` is the suggested configuration.
 See trac tickets #9235, #19654, #31288.
+
+## Other stuff
+
+[Compare HTTP/1.1 to HTTP/2 with varying latency](http://http2.golang.org/gophertiles?latency=1000)
