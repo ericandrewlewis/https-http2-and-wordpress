@@ -48,6 +48,8 @@ The WP function [`is_ssl()`](https://github.com/WordPress/WordPress/blob/master/
 doesn't work properly and causes a redirect loop when serving the application through an HTTPS proxy
 that runs the web server over HTTP.
 
+Should concatenation of assets be modified for HTTP/2?
+
 ## How to upgrade a WP site to HTTPS / HTTP/2?
 
 [Zack has done a ton of this already](https://www.tollmanz.com/wordpress-https-mixed-content-detector-1-1-0-update/). A canonical step-by-step guide would be good.
