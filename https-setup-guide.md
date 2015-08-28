@@ -7,19 +7,18 @@ will log all embedded content loaded over HTTP.
 
 ## Set up a testing environment for enabling HTTPS
 
-To configure a site to run HTTPS in a development environment, a self-signed TLS
-certificate is required. Here's [a guide](http://www.akadia.com/services/ssh_test_certificate.html).
+To configure a site to run HTTPS in a development environment, an encryption key
+and self-signed TLS certificate is required. [This site](http://www.selfsignedcertificate.com/)
+will generate the `openssl` commands to run to create both.
 
 [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV), a popular development
 environment for WordPress, [creates a cert and encryption key](https://github.com/Varying-Vagrant-Vagrants/VVV/blob/v1.1/provision/provision.sh#L233-L246),
 although the default sites are [setup for HTTP](https://github.com/Varying-Vagrant-Vagrants/VVV/blob/v1.1/provision/provision.sh#L470).
 
-Browsers will issue warnings like "this site might be trying to steal your data"
-and a red cross through the HTTPS locl icon. This is because a certificate needs to
-be recognized by a certificate authority to validate that you are indeed receiving
-data from the organization you think you are, and not a MITM. This can't be fixed,
-unless you were to buy a domain name and pass your self-signed certificate to a certificate
-authority. Ignore the warnings.
+Browsers will issue a warning that the certificate authority is invalid, because
+we signed the cert ourselves. To silence these warnings (and get the green lock in
+your browser), you should accept the certificate either [on your computer](https://support.apple.com/kb/PH10968?locale=en_US)
+or in your browser.
 
 ## Existing Guides
 
