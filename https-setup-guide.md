@@ -47,6 +47,11 @@ If you really don't want to pay, [startssl](https://startssl.com) offers free ce
 Starting November 2015, [Let's Encrypt](letsencrypt.com) will offer free certificates
 with a command line utility.
 
+## Change WordPress site settings
+
+In the WordPress admin under General > Settings, change the site url and home url
+to `https`.
+
 ## Checking security quality
 
 SSL Labs offers [a free report](http://www.dh-test-ssl.com), which will grade
