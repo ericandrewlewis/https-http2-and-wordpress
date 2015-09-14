@@ -1,6 +1,6 @@
 # HTTPS Setup Guide
 
-## Switch any embedded content loaded over HTTP to HTTPS
+## Change all embedded content loaded over HTTP to HTTPS
 
 Zack Tollman's [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/)
 will log all embedded content loaded over HTTP.
@@ -20,9 +20,26 @@ we signed the cert ourselves. To silence these warnings (and get the green lock 
 your browser), you should accept the certificate either [on your computer](https://support.apple.com/kb/PH10968?locale=en_US)
 or in your browser.
 
+## Get encryption key and certificate
+
+You need an encryption key and a certificate on your website's server to provide HTTPS.
+
+Check if your web host permits you to submit your own key and certificate. If
+not, they are coercing you to purchase security through them, which you will have to do.
+
+If your web host allows you to submit your own key and certificate, you can
+create a private key and get a certificate from any certificate authority.
+
+If you don't mind paying $16 per year per hostname, [sslmate](https://sslmate.com/) is
+great.
+
+If you really don't want to pay, [startssl](https://startssl.com) offers free certificates.
+
+Starting November 2015, [Let's Encrypt](letsencrypt.com) will offer free certificates
+with a command line utility.
+
 ## Existing Guides
 
 [User handbook](https://make.wordpress.org/support/user-manual/web-publishing/https-for-wordpress/)
 
 [WP Beginner](http://www.wpbeginner.com/wp-tutorials/how-to-add-ssl-and-https-in-wordpress/)
-

@@ -21,4 +21,13 @@ auth.
 
 Zack said we could link to this for how to use startssl.com https://konklone.com/post/switch-to-https-now-for-free
 
-What keysize should I pick? Seems like
+sslmate is a much smoother experience but costs $15.
+
+What keysize should I pick? Tollman drafted an article about this https://github.com/tollmanz/tollmanz.com/blob/tls-article/_posts/2015-03-15-decision-based-tls-deployment.markdown
+RSA itself recommends a keysize of 2048 until 2030 (in an article linked by Zack)
+
+I'm creating a key password that will encrypt the key.
+
+I save the key to my computer.
+
+I changed my mind and decide to create a key on my computer with openssl
