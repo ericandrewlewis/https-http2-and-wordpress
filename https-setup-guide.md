@@ -21,7 +21,9 @@ or in your browser.
 ## Change all embedded content loaded over HTTP to HTTPS
 
 Install the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin.
-It will log content served over HTTP. Resolve these manually.
+It will log content served over HTTP as you browse your site while logged in as an admin.
+The logs are stored in the admin interface under Content Security Policy Reports.
+Change all these to load over HTTPS.
 
 ## Does your server need a unique IP?
 
