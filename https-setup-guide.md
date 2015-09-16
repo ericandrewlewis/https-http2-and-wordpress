@@ -1,4 +1,26 @@
-# HTTPS Setup Guide
+# Learn more and setting up HTTPS
+
+## What is HTTPS?
+
+HTTP is the protocol for transferring data on the internet. e.g. e.g. a browser
+sends an HTTP request to a web server for the content of a webpage, and the web server
+sends an HTTP response.
+
+HTTP is an insecure means of data transfer. Any data the browser sends to the web
+server is out in the open. Anyone connected to a wireless network can look at the
+data being transferred by anyone else on the network in plain text.
+
+HTTPS is a secure means of data transfer. A user submitting their credit card information
+on a website to buy something would send the data over HTTPS to the web server.
+
+## Why setup HTTPS?
+
+HTTPS is the way forward for the web.
+
+* [Google gives HTTPS sites an SEO ranking boost](http://googlewebmastercentral.blogspot.com/2014/08/https-as-ranking-signal.html).
+* **Security**. If you're logging into your site, your WordPress user credentials
+should be sent securely to avoid anyone stealing your credentials.
+* Browsers are limiting new features to HTTPS sites and soon will deprecate features for HTTP sites ([1](https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/), [2](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure)).
 
 ## Set up a testing environment for enabling HTTPS
 
@@ -24,6 +46,9 @@ Install the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-ht
 It will log content served over HTTP as you browse your site while logged in as an admin.
 The logs are stored in the admin interface under Content Security Policy Reports.
 Change all these to load over HTTPS.
+
+*What if a user is embedding an image from another website and they don't serve HTTPS?
+What are the intellectual property issues at play if they host the image themselves?
 
 ## Does your server need a unique IP?
 

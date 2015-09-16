@@ -25,7 +25,7 @@ The HTTP/2 organization lists [a horde of other implementations](https://github.
 
 ## HTTPS and HTTP/2 setup guides
 
-[HTTPS Setup Guide](/https-setup-guide.md)
+[Learn more about and setting up HTTPS](/https-setup-guide.md)
 
 [HTTP/2 Setup Guide](/http2-setup-guide.md)
 
