@@ -2,20 +2,21 @@
 
 ## What is HTTPS?
 
-HTTP is the protocol for transferring data on the internet. For example, a browser
+HTTP is the protocol for transferring data on the internet. A browser
 sends an HTTP request to a web server for the content of a webpage, and the web server
-sends an HTTP response.
+returns the content in an HTTP response.
 
-HTTP is insecure. Any data the browser sends to the web server is out in the open.
-Anyone connected to a wireless network can look at the data being transferred by
-anyone else on the network in plain text.
+HTTP is insecure. Any data a browser sends to a web server over HTTP is out in the open.
+Anyone connected to a wireless network can look at data being transferred over HTTP by
+anyone else on the network.
 
 HTTPS is a secure version of HTTP. A user submitting their credit card information
 on a website to buy something would send the data over HTTPS to the web server.
 
 ## Why setup HTTPS?
 
-HTTPS is the way forward for the web.
+HTTPS is the way forward for the web. Various organizations have decided that privacy
+by default is the future, and will actively work towards that goal.
 
 * [Google gives HTTPS sites an SEO ranking boost](http://googlewebmastercentral.blogspot.com/2014/08/https-as-ranking-signal.html).
 * **Security**. If you're logging into your site, your WordPress user credentials
