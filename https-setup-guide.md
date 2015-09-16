@@ -2,15 +2,15 @@
 
 ## What is HTTPS?
 
-HTTP is the protocol for transferring data on the internet. e.g. e.g. a browser
+HTTP is the protocol for transferring data on the internet. For example, a browser
 sends an HTTP request to a web server for the content of a webpage, and the web server
 sends an HTTP response.
 
-HTTP is an insecure means of data transfer. Any data the browser sends to the web
-server is out in the open. Anyone connected to a wireless network can look at the
-data being transferred by anyone else on the network in plain text.
+HTTP is insecure. Any data the browser sends to the web server is out in the open.
+Anyone connected to a wireless network can look at the data being transferred by
+anyone else on the network in plain text.
 
-HTTPS is a secure means of data transfer. A user submitting their credit card information
+HTTPS is a secure version of HTTP. A user submitting their credit card information
 on a website to buy something would send the data over HTTPS to the web server.
 
 ## Why setup HTTPS?
