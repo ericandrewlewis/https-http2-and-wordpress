@@ -90,3 +90,5 @@ your TLS implementation.
 [User handbook](https://make.wordpress.org/support/user-manual/web-publishing/https-for-wordpress/)
 
 [WP Beginner](http://www.wpbeginner.com/wp-tutorials/how-to-add-ssl-and-https-in-wordpress/)
+
+[The Federal Government put a helpful website together](https://https.cio.gov/)
