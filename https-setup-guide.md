@@ -18,12 +18,25 @@ we signed the cert ourselves. To silence these warnings (and get the green lock 
 your browser), you should accept the certificate either [on your computer](https://support.apple.com/kb/PH10968?locale=en_US)
 or in your browser.
 
-## Change all embedded content loaded over HTTP to HTTPS
+## Change all embedded content to load over HTTPS
 
-Install the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin.
-It will log content served over HTTP as you browse your site while logged in as an admin.
-The logs are stored in the admin interface under Content Security Policy Reports.
-Change all these to load over HTTPS.
+Change all embedded content in your site to load securely over HTTPS. Anywhere there's
+an explicit reference to `http://` in a database or script file should be modified
+to load over `https://`. As HTTPS should always be preferred, [the protocol relative URL is now an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
+
+You'll need to find a way to get a list of all the insecure content loading on your
+site. Content-Security-Policy-Report-Only (CSP-RO) allows you to stipulate an embedded content loading
+policy. For our purposes, this will be to require HTTPS. Reading the raw HTML output
+of your website is insufficient, because any asynchronously loaded content will be
+overlooked. CSP-RO will catch all of this, because it is implemented at the browser-level.
+
+A report of any embedded content violating the policy will be sent to a URL endpoint
+of your choice. This allows you to collate all your embedded insecure content into a
+list of things to change.
+
+The [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin
+implements CSP-RO as you browse the site as an admin. The reports are stored in
+the admin interface under Content Security Policy Reports.
 
 *What if a user is embedding an image from another website and they don't serve HTTPS?
 What are the intellectual property issues at play if they host the image themselves?
