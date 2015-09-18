@@ -53,8 +53,8 @@ What are the intellectual property issues at play if they host the image themsel
 
 ## Does your server need a unique IP?
 
-If you want to avoid security warnings in some older browsers (i.e. anything on Windows XP),
-you will need a unique IP for your certificate for clients that don't support [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication).
+If you want to avoid security warnings in some older browsers (e.g. IE 8 Windows XP and similar),
+you will need a unique IP for your certificate for clients that don't have [SNI support](https://en.wikipedia.org/wiki/Server_Name_Indication).
 
 ## Get encryption key and certificate
 
