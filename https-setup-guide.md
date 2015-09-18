@@ -52,6 +52,15 @@ If you really don't want to pay, [startssl](https://startssl.com) offers free ce
 Starting November 2015, [Let's Encrypt](letsencrypt.com) will offer free certificates
 with a command line utility.
 
+## Force users to connect to your site via HTTPS
+
+HTTP Strict Transport Security forces users to always connect to your site securely.
+
+This is a preferred alternative to insecurely redirecting HTTP requests to HTTPS
+via a 301 response.
+
+[Read more about HSTS](https://https.cio.gov/hsts/).
+
 ## Change WordPress site settings
 
 In the WordPress admin under General > Settings, change the site url and home url
