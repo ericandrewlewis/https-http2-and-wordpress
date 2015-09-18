@@ -1,5 +1,7 @@
 # About HTTPS
 
+## Overview
+
 HTTP is the protocol for transferring data on the internet. A browser
 sends an HTTP request to a web server for the content of a webpage, and the web server
 returns the content in an HTTP response.
@@ -20,5 +22,15 @@ by default is the future, and will actively work towards that goal.
 * **Security**. If you're logging into your site, your WordPress user credentials
 should be sent securely to avoid anyone stealing your credentials.
 * Browsers are limiting new features to HTTPS sites and soon will deprecate features for HTTP sites ([1](https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/), [2](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure)).
+
+## How does HTTPS work?
+
+A web server that talks HTTPS will have a few files required for HTTPS.
+
+A **private key**.
+
+An **SSL certificate**, which includes a **public key**.
+
+[Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
 Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
