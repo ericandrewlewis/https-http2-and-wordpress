@@ -46,18 +46,15 @@ What are the intellectual property issues at play if they host the image themsel
 If you want to avoid security warnings in some older browsers (e.g. IE 8 Windows XP and similar),
 you will need a unique IP for your certificate for clients that don't have [SNI support](https://en.wikipedia.org/wiki/Server_Name_Indication).
 
-## Get encryption key and certificate
+## Get a private key and SSL certificate
 
-You need an encryption key and a certificate on your website's server to provide HTTPS.
+You need a private key and an SSL certificate on your website's server to provide HTTPS.
 
-Check if your web host permits you to submit your own key and certificate. If
-not, they are coercing you to purchase security through them, which you will have to do.
-
-If your web host allows you to submit your own key and certificate, you can
-create a private key and get a certificate from any certificate authority.
+Check if your web host permits you to submit your own key and certificate. If they do,
+you can create a private key and get a certificate from any certificate authority.
 
 If you don't mind paying $16 per year per hostname, [sslmate](https://sslmate.com/) is
-great.
+a great way to purchase SSL certificates.
 
 If you really don't want to pay, [startssl](https://startssl.com) offers free certificates.
 [Here is a guide](https://konklone.com/post/switch-to-https-now-for-free).
