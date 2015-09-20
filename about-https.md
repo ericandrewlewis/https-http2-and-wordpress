@@ -38,7 +38,11 @@ are issued by root certificates.
 What's to stop a hacker from installing a certificate on their intermediary server?
 
 So SSL certificates are verified just by the fact that their public key is guaranteed,
-and perhaps expiration information in the certificate? So if I have your private key,
+and perhaps expiration information in the certificate? Right, the lack of the private
+key means that an attacker cannot complete the TLS handshake, thereby affirming
+authentication of the server.
+
+So if I have your private key,
 I can use your SSL certificate and run with it?
 
 Root certificates are trusted by your computer. These root CAs sign all other
