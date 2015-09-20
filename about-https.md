@@ -25,6 +25,27 @@ should be sent securely to avoid anyone stealing your credentials.
 
 ## How does HTTPS work?
 
+HTTPS provides security in separate features: **authenticity**, **privacy* and **integrity**.
+
+Why do we need to authenticate? Because anyone along the internet could spoof to be
+the website you're trying to communicate with. For this reason, we need to be able
+to ensure that the server communicating with us can reasonably identify itself.
+
+Authenticity is made possible through an SSL certificate, which a server provides
+and somehow proves that this exact server is the server it says it is. Certificates
+are issued by root certificates.
+
+What's to stop a hacker from installing a certificate on their intermediary server?
+
+So SSL certificates are verified just by the fact that their public key is guaranteed,
+and perhaps expiration information in the certificate? So if I have your private key,
+I can use your SSL certificate and run with it?
+
+Root certificates are trusted by your computer. These root CAs sign all other
+certs that you will trust.
+
+Why do we need privacy? Because HTTP is out in the open.
+
 A web server that talks HTTPS will have a few files required for HTTPS.
 
 A **private key**.
