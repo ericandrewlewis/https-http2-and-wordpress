@@ -25,7 +25,7 @@ should be sent securely to avoid anyone stealing your credentials.
 
 ## What is HTTPS not?
 
-HTTPS provides security of **authenticity**, **privacy* and **integrity**, mainly
+HTTPS provides security of **authenticity**, **privacy** and **integrity**, mainly
 dealing with securing communication between a client and a server. It **does not**
 make your web server immune to other types of vulnerabilities, such as brute force
 cracking into a user account protected part of a website.
