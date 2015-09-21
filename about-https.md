@@ -32,7 +32,7 @@ cracking into a user account protected part of a website.
 
 ## How does HTTPS work?
 
-HTTPS provides certain security features: **authenticity**, **privacy* and **integrity**.
+HTTPS provides certain security features: **authenticity**, **privacy** and **integrity**.
 
 Why do we need to authenticate? Because anyone along the internet could spoof to be
 the website you're trying to communicate with. For this reason, we need to be able
