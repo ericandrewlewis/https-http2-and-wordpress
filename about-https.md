@@ -22,6 +22,9 @@ by default is the future, and will actively work towards that goal.
 * **Security**. If you're logging into your site, your WordPress user credentials
 should be sent securely to avoid anyone stealing your credentials.
 * Browsers are limiting new features to HTTPS sites and soon will deprecate features for HTTP sites ([1](https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/), [2](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure)).
+* Passive attackers listening to a user's web browsing activity can build up a portrait
+of what a user is doing on the internet. Only with ubiquitous secure web browsing can
+we avoid this.
 
 ## What is HTTPS not?
 
@@ -54,5 +57,7 @@ Why do we need privacy? Because HTTP is out in the open.
 A web server that talks HTTPS will have a few files required for HTTPS.
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
+
+[HTTPS Everywhere](https://www.youtube.com/watch?v=cBhZ6S0PFCY)
 
 Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
