@@ -41,6 +41,10 @@ the admin interface under Content Security Policy Reports.
 *What if a user is embedding an image from another website and they don't serve HTTPS?
 What are the intellectual property issues at play if they host the image themselves?
 
+## Benchmark crypto?
+
+eg. openssl speed sha ecdh`
+
 ## Does your server need a unique IP?
 
 If you want to avoid security warnings in some older browsers (e.g. IE 8 Windows XP and similar),
