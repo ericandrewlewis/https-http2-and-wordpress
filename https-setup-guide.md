@@ -88,6 +88,8 @@ Include intermediary certificates with your certificate, but not the root certif
 
 ## Tuning TLS
 
+Verify openssl and kernel are latest on server handling TLS for perf optimizations.
+
 Enable session resumption and false start.
 
 Optimize TLS record size to avoid overflowing a TCP congestion window ([1](https://youtu.be/fQX2mJ11vCs?t=1834))
