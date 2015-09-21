@@ -1,6 +1,6 @@
 # About HTTPS
 
-## Overview
+## What is HTTPS?
 
 HTTP is the protocol for transferring data on the internet. A browser
 sends an HTTP request to a web server for the content of a webpage, and the web server
@@ -23,38 +23,35 @@ by default is the future, and will actively work towards that goal.
 should be sent securely to avoid anyone stealing your credentials.
 * Browsers are limiting new features to HTTPS sites and soon will deprecate features for HTTP sites ([1](https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/), [2](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure)).
 
+## What is HTTPS not?
+
+HTTPS provides security of **authenticity**, **privacy* and **integrity**, mainly
+dealing with securing communication between a client and a server. It **does not**
+make your web server immune to other types of vulnerabilities, such as brute force
+cracking into a user account protected part of a website.
+
 ## How does HTTPS work?
 
-HTTPS provides security in separate features: **authenticity**, **privacy* and **integrity**.
+HTTPS provides certain security features: **authenticity**, **privacy* and **integrity**.
 
 Why do we need to authenticate? Because anyone along the internet could spoof to be
 the website you're trying to communicate with. For this reason, we need to be able
 to ensure that the server communicating with us can reasonably identify itself.
 
-Authenticity is made possible through an SSL certificate, which a server provides
-and somehow proves that this exact server is the server it says it is. Certificates
-are issued by root certificates.
+Authenticity is made possible through an **SSL certificate**. An SSL certificate is
+a file cryptographically signed by a certificate authority that ensures the public key
+of a server, along with other information (expiration date, signer, etc.).
 
-What's to stop a hacker from installing a certificate on their intermediary server?
-
-So SSL certificates are verified just by the fact that their public key is guaranteed,
-and perhaps expiration information in the certificate? Right, the lack of the private
-key means that an attacker cannot complete the TLS handshake, thereby affirming
-authentication of the server.
-
-So if I have your private key,
-I can use your SSL certificate and run with it?
-
-Root certificates are trusted by your computer. These root CAs sign all other
-certs that you will trust.
+A browser will verify the certificate chain of an SSL certificate to ensure that one
+of the root certificates that the browser of the user's computer trusts is a parent
+of the SSL certificate provided by a website. In this manner, the chain of trust
+backs a public key of the server. If the server provides an SSL certificate with a
+public key, but does not have the private key, it will not be able to complete the
+TLS handshake.
 
 Why do we need privacy? Because HTTP is out in the open.
 
 A web server that talks HTTPS will have a few files required for HTTPS.
-
-A **private key**.
-
-An **SSL certificate**, which includes a **public key**.
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
