@@ -41,7 +41,25 @@ the admin interface under Content Security Policy Reports.
 *What if a user is embedding an image from another website and they don't serve HTTPS?
 What are the intellectual property issues at play if they host the image themselves?
 
-## Benchmark crypto?
+## Testing TLS
+
+Limit your browser to 300ms 3g so you can see the effect of TLS handshakes.
+
+Check that your server has session IDs and session tickets via this command
+
+`openssl s_client -connect ericandrewlewis.com:443 -tls1 -tlsextdebug -status` looking
+for Session-ID and TLS session ticket info. this is for session resumption.
+
+Session ID data is stored on the server. How do you configure how long to store
+in the cache, and how to eject? Apache has mod_status provides debug output of cache hit rate
+for tls cache.
+
+TLS handshake should take 1 round trip. If it's more than that, fix it.
+
+False start requires various requirements from different browsers. basically
+Npl/alpn and forward secrecy ciphers (ecdhe).
+
+## Benchmark crypto on server?
 
 eg. openssl speed sha ecdh`
 
@@ -66,9 +84,18 @@ If you really don't want to pay, [startssl](https://startssl.com) offers free ce
 Starting November 2015, [Let's Encrypt](letsencrypt.com) will offer free certificates
 with a command line utility.
 
+Include intermediary certificates with your certificate, but not the root certificate.
+
 ## Tuning TLS
 
 Enable session resumption and false start.
+
+Optimize TLS record size to avoid overflowing a TCP congestion window ([1](https://youtu.be/fQX2mJ11vCs?t=1834))
+
+OCSP stapling
+
+Terminate TLS as close to the user as possible for dynamic requests. I.e. use
+CDNs for dynamic requests?
 
 ## Force users to connect to your site via HTTPS
 
@@ -78,6 +105,8 @@ This is a preferred alternative to insecurely redirecting HTTP requests to HTTPS
 via a 301 response.
 
 [Read more about HSTS](https://https.cio.gov/hsts/).
+
+HSTS preload list https://hstspreload.appspot.com/
 
 ## SEO-changes
 
