@@ -39,29 +39,22 @@ HTTPS provides certain security features: **authenticity**, **privacy** and **in
 
 **Authenticity** ensures that the website we're connecting to is the website we *think* we're
 connecting to, and not a malicious "man-in-the-middle" pretending to be the website.
-Authenticity is validated with an **SSL certificate**.
+Authenticity is verified with an **SSL certificate**.
 
 A **certificate authority** (CA) is responsible for creating and issuing an SSL certificate.
 The CA first validates that the person requesting a certificate owns the domain,
-then issues a certificate. The certificate includes two important piece of information:
+then issues a certificate. The certificate includes two important pieces of information:
 a **digital signature** and the **web server's public key**.
 
-The digital signature proves that the CA created the certificate ([read more about digital signatures](about-public-key-cryptography.md#digital-signature)).
-Your browser can verify the authenticity of the SSL certificate by looking at the CAs SSL certificate,
-and unscrambling the signature with its public key. This goes certificate verification
-goes all the way to "root" certificates that are installed on your computer.
-[How Certificates Use Digital Signatures](http://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art012)
-goes into detail about verifying SSL certficate chains by hand.
+The digital signature (along with the certificate chain) can be verified to prove
+the CA created the certificate. Therefore, the information in the certificate can be trusted
+([read more about how a digital signature works](about-public-key-cryptography.md#digital-signature)).
+This is part of assuring authenticity.
 
-The other piece of information that's important in the site's SSL certificate is
-the public key. Since the CA's signature has approved of the entire SSL certificate,
-we can trust the rest of the information embedded, which includes the server's public key.
-The server's public key is used to encrypt data when first negotiating an HTTPS connection.
-This guarantees **privacy**, as data is encrypted between the user and the website.
-
-If a man-in-the-middle attempts to spoof a website, it could provide a certificate,
-but without the server's private key that matches the public key, it would fail HTTPS negotiation,
-and not be able to complete the connection.
+The certificate also includes the web server's public key. If the digital signature
+can be verified, we can trust the public key as well. The public key is used to encrypt
+data between the user and the web server. Data encryption guarantees **privacy**, as
+no passive attackers can see what's being said by either party.
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 

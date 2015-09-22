@@ -21,3 +21,11 @@ means that only they could have signed the string.
 
 Digital signatures are used in SSL certificates to prove a certificate is blessed
 by a certificate authority.
+
+### How an SSL certificate is verified
+
+Your browser can verify the authenticity of the SSL certificate by looking at the CAs SSL certificate,
+and unscrambling the signature with its public key. This goes certificate verification
+goes all the way to "root" certificates that are installed on your computer.
+[How Certificates Use Digital Signatures](http://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art012)
+goes into detail about verifying SSL certficate chains by hand.
