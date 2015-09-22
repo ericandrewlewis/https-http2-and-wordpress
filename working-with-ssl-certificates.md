@@ -2,19 +2,19 @@
 
 Certificates are typically not in human readable form.
 
-They are typically encoded in either the DER format (binary), or base64 encoded.
+They are typically encoded in either the DER format (binary), or PEM format (base64 encoded).
 
 [Converting certificates from one form to another](https://support.ssl.com/Knowledgebase/Article/View/19/0/der-vs-crt-vs-cer-vs-pem-certificates-and-how-to-convert-them)
 
 How to certify an SSL certificate with the intermediary chain?
 
-## Convert DER format to base64
+## Convert DER format to PEM
 
 ```bash
 openssl x509 -in cert.crt -inform der -outform pem -out cert.pem
 ```
 
-## View base64 encoded certificate
+## View PEM encoded certificate
 
 ```bash
 openssl x509 -in cert.pem -text -noout
@@ -25,7 +25,7 @@ openssl x509 -in cert.pem -text -noout
 You may want to concatenate certificates into a single file, e.g. to verify a
 certificate is good.
 
-Only base64 encoded certificates can be concatenated, so convert as appropriate
+Only PEM encoded certificates can be concatenated, so convert as appropriate
 and concatenate them together.
 
 e.g.
@@ -49,9 +49,9 @@ fF6adulZkMV8gzURZVE=
 
 ## Validate a certificate
 
-Concatenate all base64 encoded intermediary certificates and the root certificate in `cacert.pem`.
+Concatenate all PEM encoded intermediary certificates and the root certificate in `cacert.pem`.
 
-You need a base64 encoded site certificate in `server.pem`.
+You need a PEM encoded site certificate in `server.pem`.
 
 ```bash
 openssl verify -verbose -CAfile cacert.pem server.pem
