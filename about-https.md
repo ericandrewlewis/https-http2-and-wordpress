@@ -39,20 +39,17 @@ HTTPS provides certain security features: **authenticity**, **privacy** and **in
 
 **Authenticity** ensures that the website we're connecting to is the website we *think* we're
 connecting to, and not a malicious "man-in-the-middle" pretending to be the website.
+Authenticity is validated with an **SSL certificate**.
 
-An **SSL certificate** provides this authenticity.
+A **certificate authority** (CA) is responsible for creating and issuing an SSL certificate.
+The CA first validates that the person requesting a certificate owns the domain,
+then issues a certificate. The certificate includes two important piece of information:
+a **digital signature** and the **web server's public key**.
 
-A **certificate authority** (CA) is responsible for creating SSL certificates.
-A CA validates domain ownership, typically through an email related to the domain's
-WHOIS information. Then the certificate is created. The certificate includes two
-important piece of information: the signature and the public key.
-
-The signature is created with the private key of the CA. The private key of the CA
-is a well-guarded secret. By signing the certificate, the CA is giving its stamp
-of approval. Your browser can verify the authenticity of the SSL certificate by
-looking at the CAs SSL certificate, and unscrambling the signature with its public key.
-This goes certificate verification goes all the way to "root" certificates that
-are installed on your computer.
+The digital signature proves that the CA created the certificate ([read more about digital signatures](about-public-key-cryptography.md#digital-signature)).
+Your browser can verify the authenticity of the SSL certificate by looking at the CAs SSL certificate,
+and unscrambling the signature with its public key. This goes certificate verification
+goes all the way to "root" certificates that are installed on your computer.
 [How Certificates Use Digital Signatures](http://commandlinefanatic.com/cgi-bin/showarticle.cgi?article=art012)
 goes into detail about verifying SSL certficate chains by hand.
 
