@@ -10,8 +10,16 @@ HTTP is insecure. Any data a browser sends to a web server over HTTP is out in t
 Anyone connected to a wireless network can look at data being transferred over HTTP by
 anyone else on the network.
 
-HTTPS is a secure version of HTTP. A user submitting their credit card information
-on a website to buy something would send the data over HTTPS to the web server.
+HTTPS is a secure version of HTTP, providing **privacy** and **authenticity** for data transfer.
+For example, if a user submits their credit card information on a website to buy a product,
+the data must be sent over HTTPS.
+
+## What is HTTPS not?
+
+HTTPS provides security of **authenticity**, **privacy** and **integrity** for data
+transfer. It **does not** make your website immune to other security vulnerabilities.
+If a website has a user login protected section, a hacker can still attempt to
+break into it with brute force, with or without HTTPS.
 
 ## Why setup HTTPS?
 
@@ -25,13 +33,6 @@ should be sent securely to avoid anyone stealing your credentials.
 * User privacy. Passive attackers listening to a user's web browsing activity can build up a portrait
 of what a user is doing on the internet. Only with ubiquitous secure web browsing can
 we avoid this.
-
-## What is HTTPS not?
-
-HTTPS provides security of **authenticity**, **privacy** and **integrity**, mainly
-dealing with securing communication between a client and a server. It **does not**
-make your web server immune to other types of vulnerabilities, such as brute force
-cracking into a user account protected part of a website.
 
 ## How does HTTPS work?
 
