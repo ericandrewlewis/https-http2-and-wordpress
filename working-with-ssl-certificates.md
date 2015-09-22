@@ -49,7 +49,10 @@ fF6adulZkMV8gzURZVE=
 
 ## Validate a certificate
 
-Include all intermediary certificates in `server.crt`
+Concatenate all base64 encoded intermediary certificates and the root certificate in `cacert.pem`.
+
+You need a base64 encoded site certificate in `server.pem`.
+
 ```bash
-openssl verify -verbose -CAfile cacert.pem  server.crt
+openssl verify -verbose -CAfile cacert.pem server.pem
 ```
