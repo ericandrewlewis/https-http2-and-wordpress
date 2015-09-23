@@ -58,7 +58,7 @@ which means the certificate can be trusted. [Learn how a digital signature works
 The certificate also includes the web server's public key. If the digital signature
 is verified, the public key can be trusted as well. The public key is used to encrypt
 messages between the user and the web server. Although attackers can the encrypted messages,
-they can't see the decrypted plain text.
+they can't see the decrypted plain text. [Learn how public key cryptography works](https://github.com/ericandrewlewis/https-http2-and-wordpress/blob/master/about-public-key-cryptography.md#encrypting-plaintext).
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
