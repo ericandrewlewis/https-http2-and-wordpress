@@ -27,6 +27,9 @@ Especially if your site has embedded content from the same domain.
 
 ## Change all embedded content to load over HTTPS
 
+Embedded content in webpages (images, javascript files, stylesheets) may be
+included with an explicit `http://` protocol.
+
 Change all embedded content in your site to load securely over HTTPS. Anywhere there's
 an explicit reference to `http://` in a database or script file should be modified
 to load over `https://`. As HTTPS should always be preferred, [the protocol relative URL is now an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
