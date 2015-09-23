@@ -6,20 +6,24 @@ HTTP is the protocol for transferring data on the internet. A browser
 sends an HTTP request to a web server for the content of a webpage, and the web server
 returns the content in an HTTP response.
 
-HTTP is insecure. Any data a browser sends to a web server over HTTP is out in the open.
+HTTP is insecure. Any data a browser sends to a web server over HTTP is in plaintext.
 Anyone connected to a wireless network can look at data being transferred over HTTP by
-anyone else on the network.
+anyone else on the network. This has security implications (user account data), but
+also personal information. Just the fact that you're visiting certain websites
+paints a portrait.
 
-HTTPS is a secure version of HTTP, providing **privacy** and **authenticity** for data transfer.
+On top of that, connections are not authenticated. Websites served over HTTP can be spoofed by attackers.
+
+HTTPS is a secure version of HTTP, providing **encryption** and **authenticity** for data transfer.
 For example, if a user submits their credit card information on a website to buy a product,
 the data must be sent over HTTPS.
 
 ## What is HTTPS not?
 
-HTTPS provides security of **authenticity**, **privacy** and **integrity** for data
-transfer. It **does not** make your website immune to other security vulnerabilities.
+HTTPS provides security of **authenticity** and **encryption** for data transfer.
+It **does not** make your website immune to other security vulnerabilities.
 If a website has a user login protected section, a hacker can still attempt to
-break into it with brute force, with or without HTTPS.
+break into it with brute force, over HTTP or HTTPS.
 
 ## Why setup HTTPS?
 
@@ -36,7 +40,7 @@ we avoid this.
 
 ## How does HTTPS work?
 
-HTTPS provides certain security features: **authenticity**, **privacy** and **integrity**.
+HTTPS provides certain security features: **authenticity** and **encryption**.
 
 **Authenticity** ensures that the website we're connecting to is the website we *think* we're
 connecting to, and not a malicious "man-in-the-middle" pretending to be the website.
@@ -54,8 +58,8 @@ This is part of assuring authenticity.
 
 The certificate also includes the web server's public key. If the digital signature
 can be verified, we can trust the public key as well. The public key is used to encrypt
-data between the user and the web server. Data encryption guarantees **privacy**, as
-no passive attackers can see what's being said by either party.
+data between the user and the web server. **Encryption** guarantees that
+attackers can see what's being said by either party.
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
