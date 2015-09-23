@@ -49,18 +49,16 @@ Authenticity is verified with an **SSL certificate**.
 
 A **certificate authority** (CA) is responsible for creating and issuing an SSL certificate.
 The CA first validates that the person requesting a certificate owns the domain,
-then issues a certificate. The certificate includes two important pieces of information:
+then issues a certificate. A certificate includes two important pieces of information:
 a **digital signature** and the **web server's public key**.
 
-The digital signature (along with the certificate chain) can be verified to prove
-the CA created the certificate. Therefore, the information in the certificate can be trusted
-([read more about how a digital signature works](about-public-key-cryptography.md#digital-signature)).
-This is part of assuring authenticity.
+The digital signature (along with the certificate chain) proves the CA created the certificate,
+which means the certificate can be trusted. [Learn how a digital signature works](about-public-key-cryptography.md#digital-signature).
 
 The certificate also includes the web server's public key. If the digital signature
-can be verified, we can trust the public key as well. The public key is used to encrypt
-data between the user and the web server. **Encryption** guarantees that
-attackers can see what's being said by either party.
+is verified, the public key as well. The public key is used to encrypt
+data between the user and the web server. Although attackers can the encrypted messages,
+they can't see the decrypted plain text.
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
