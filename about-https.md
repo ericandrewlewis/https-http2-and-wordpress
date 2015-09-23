@@ -56,8 +56,8 @@ The digital signature (along with the certificate chain) proves the CA created t
 which means the certificate can be trusted. [Learn how a digital signature works](about-public-key-cryptography.md#digital-signature).
 
 The certificate also includes the web server's public key. If the digital signature
-is verified, the public key as well. The public key is used to encrypt
-data between the user and the web server. Although attackers can the encrypted messages,
+is verified, the public key can be trusted as well. The public key is used to encrypt
+messages between the user and the web server. Although attackers can the encrypted messages,
 they can't see the decrypted plain text.
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
