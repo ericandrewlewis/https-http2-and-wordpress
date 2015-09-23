@@ -1,6 +1,6 @@
-# HTTPS Setup guide
+# How to setup HTTPS
 
-## Set up a testing environment for enabling HTTPS
+## Set up a testing environment
 
 Some may find that creating a testing environment for enabling HTTPS preferable to
 making changes on a production site.
@@ -15,8 +15,15 @@ although the default sites are [setup for HTTP](https://github.com/Varying-Vagra
 
 Browsers will issue a warning that the certificate authority is invalid, because
 we signed the cert ourselves. To silence these warnings (and get the green lock in
-your browser), you should accept the certificate either [on your computer](https://support.apple.com/kb/PH10968?locale=en_US)
+your browser), you should trust the certificate either [on your computer](https://support.apple.com/kb/PH10968?locale=en_US)
 or in your browser.
+
+## Allow the site to load both HTTP and HTTPS
+
+While transitioning the site, you'll want to be able to load content over HTTP and HTTPS.
+Especially if your site has embedded content from the same domain.
+
+[Mozilla HTTPS config generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/)
 
 ## Change all embedded content to load over HTTPS
 
