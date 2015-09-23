@@ -14,8 +14,9 @@ paints a portrait.
 
 On top of that, connections are not authenticated. Websites served over HTTP can be spoofed by attackers.
 
-HTTPS is a secure version of HTTP, providing **encryption** and **authenticity** for data transfer.
-For example, if a user submits their credit card information on a website to buy a product,
+HTTPS is a secure version of HTTP that addresses these security problems, providing
+**encryption** and **authenticity** while transferring data. For example, if a user submits
+their credit card information on a website to buy a product,
 the data must be sent over HTTPS.
 
 ## What is HTTPS not?
