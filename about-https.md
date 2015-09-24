@@ -23,21 +23,23 @@ HTTPS provides security of **authenticity** and **encryption** for data transfer
 HTTPS is the way forward for the web. Various organizations have decided that privacy by default is the future, and will actively work towards that goal.
 
 * SEO. [Google gives HTTPS sites a ranking boost](http://googlewebmastercentral.blogspot.com/2014/08/https-as-ranking-signal.html).
-* User login security. If you're logging into your site, your WordPress user credentials should be sent securely to avoid anyone stealing your credentials.
-* Browser features. New browser features are limited to HTTPS sites and soon will deprecate features for HTTP sites ([1](https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/), [2](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure)).
-* User privacy. Passive attackers listening to a user's web browsing activity can build up a portrait of what a user is doing on the internet. Only with ubiquitous secure web browsing can we avoid this.
+* Data encryption security.
+* Server authenticity.
+* New browser features are limited to HTTPS sites. Browsers will soon deprecate features for HTTP sites ([1](https://blog.mozilla.org/security/2015/04/30/deprecating-non-secure-http/), [2](https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure)).
 
 ## How does HTTPS work?
 
 HTTPS provides certain security features: **authenticity** and **encryption**.
 
-**Authenticity** ensures that the website we're connecting to is the website we *think* we're connecting to, and not a malicious "man-in-the-middle" pretending to be the website. Authenticity is verified with an **SSL certificate**.
+**Authenticity** ensures that the website a user connects to is the website the user *thinks* they're connecting to, and not a "man-in-the-middle" attacker acting as the website. Authenticity is verified with an **SSL certificate**.
 
-A **certificate authority** (CA) is responsible for creating and issuing an SSL certificate. The CA first validates that the person requesting a certificate owns the domain, then issues a certificate. A certificate includes two important pieces of information: a **digital signature** and the **web server's public key**.
+A **certificate authority** (CA) is responsible for creating and issuing an SSL certificate. The CA first validates that the person requesting a certificate owns the domain, then issues a certificate.
+
+When a user first connects to a website over HTTPS, the server returns an SSL certificate. A certificate includes two important pieces of information: a **digital signature** and the **web server's public key**.
 
 The digital signature (along with the certificate chain) proves the CA created the certificate, which means the certificate can be trusted. [Learn how a digital signature works](about-public-key-cryptography.md#digital-signature).
 
-The certificate also includes the web server's public key. If the digital signature is verified, the public key can be trusted as well. The public key is used to encrypt messages between the user and the web server. Although attackers can the encrypted messages, they can't see the decrypted plain text. [Learn how public key cryptography works](https://github.com/ericandrewlewis/https-http2-and-wordpress/blob/master/about-public-key-cryptography.md#encrypting-plaintext).
+The certificate also includes the web server's public key. If the digital signature is verified, the public key can be trusted as well. The public key is used in encrypting data between the user and the web server. Although attackers might be able to get an encrypted message, they can't decode it. [Learn how public key cryptography works](https://github.com/ericandrewlewis/https-http2-and-wordpress/blob/master/about-public-key-cryptography.md#encrypting-plaintext).
 
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
