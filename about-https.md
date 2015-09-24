@@ -16,7 +16,7 @@ HTTPS is a secure version of HTTP that addresses these security problems, adding
 
 ## What is HTTPS not?
 
-HTTPS provides security of **authenticity** and **encryption** for data transfer. It **does not** make your website immune to other security vulnerabilities. If a website has a user login protected section, a hacker can still attempt to break into it with brute force, over HTTP or HTTPS.
+HTTPS provides security of **authenticity** and **encryption** for data transfer. It **does not** make your website immune to other security vulnerabilities. If a website allows user login, a hacker can still attempt to crack user accounts with a brute force attack, over HTTP or HTTPS.
 
 ## Why setup HTTPS?
 
