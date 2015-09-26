@@ -1,73 +1,86 @@
 # How to setup HTTPS
 
-## Set up a testing environment
+## Create a private key and SSL certificate
 
-Some may find that creating a testing environment for enabling HTTPS preferable to
-making changes on a production site.
+To enable HTTPS on a web server, a private key and an SSL certificate.
 
-To configure a site to run HTTPS in a development environment, an encryption key
-and self-signed TLS certificate is required. [This site](http://www.selfsignedcertificate.com/)
-will generate the `openssl` commands to run to create both.
+If the site is hosted by a web hosting provider, check their documentation on how to configure SSL. Some hosts force users to purchase SSL through them. Any good host should allow users to purchase an SSL certificate from a provider of their choosing.
 
-[VVV](https://github.com/Varying-Vagrant-Vagrants/VVV), a popular development
-environment for WordPress, [creates a cert and encryption key](https://github.com/Varying-Vagrant-Vagrants/VVV/blob/v1.1/provision/provision.sh#L233-L246),
-although the default sites are [setup for HTTP](https://github.com/Varying-Vagrant-Vagrants/VVV/blob/v1.1/provision/provision.sh#L470).
+[sslmate](https://sslmate.com/) automates the SSL key and certificate process for a price.
 
-Browsers will issue a warning that the certificate authority is invalid, because
-we signed the cert ourselves. To silence these warnings (and get the green lock in
-your browser), you should trust the certificate either [on your computer](https://support.apple.com/kb/PH10968?locale=en_US)
-or in your browser.
+Starting in November 2015, [Let's Encrypt](https://letsencrypt.com), a new certificate authority, will offer free certificates and key configuration with a command line utility.
 
-## Allow the site to load both HTTP and HTTPS
+[Start SSL](https://startssl.com) offers free certificates. [Here is a guide](https://konklone.com/post/switch-to-https-now-for-free).
 
-While transitioning the site, you'll want to be able to load content over HTTP and HTTPS.
-Especially if your site has embedded content from the same domain.
+## Configure the site to server over both HTTP and HTTPS
 
-[Mozilla HTTPS config generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/)
+While transitioning the site, serve content over both HTTP and HTTPS.
 
-## Change all embedded content to load over HTTPS
+Hosting providers may have administrative interfaces to enable HTTPS.
 
-Embedded content in webpages (images, javascript files, stylesheets) may be
-included with an explicit `http://` protocol.
+If you manage the web server configuration, Mozilla has an [HTTPS configuration generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) which produces boilerplate for configuring various web servers to server HTTPS.
 
-Change all embedded content in your site to load securely over HTTPS. Anywhere there's
-an explicit reference to `http://` in a database or script file should be modified
-to load over `https://`. As HTTPS should always be preferred, [the protocol relative URL is now an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
+## Collect a list of embedded HTTP content
 
-You'll need to find a way to get a list of all the insecure content loading on your
-site. Content-Security-Policy-Report-Only (CSP-RO) allows you to stipulate an embedded content loading
-policy. For our purposes, this will be to require HTTPS. Reading the raw HTML output
-of your website is insufficient, because any asynchronously loaded content will be
-overlooked. CSP-RO will catch all of this, because it is implemented at the browser-level.
+Embedded content in webpages (images, javascript files, stylesheets) may be referenced with an explicit protocol of `http://`. This may be hardcoded in template files or database content. Modify these to load over `https://`, as a secure version is always be preferred. [The protocol relative URL is now an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
 
-A report of any embedded content violating the policy will be sent to a URL endpoint
-of your choice. This allows you to collate all your embedded insecure content into a
-list of things to change.
+Finding every instance of embedded content served over HTTP can be challenging. Thankfully, a mechanism for building a list of insecurely served assets is available: Content Security Policy Report Only, a specific usage of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/). CSP is an HTTP header which defines an embedded content loading policy that a web browser will respect. For example, a policy could dictate the browser should only load image assets over a specific CDN host, and the browser will refuse to load image assets from other hosts.
 
-The [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin
-implements CSP-RO as you browse the site as an admin. The reports are stored in
-the admin interface under Content Security Policy Reports.
+To build a list of insecure embedded assets, we can define a policy that all assets should be loaded over HTTPS, and use CSP in Report-Only mode, which will send a report of embedded content policy violations to a URL of our choice. This allows you to collate all your embedded insecure content into a list of things to change.
 
-*What if a user is embedding an image from another website and they don't serve HTTPS?
-What are the intellectual property issues at play if they host the image themselves?
+need some example here:
+
+```
+Content-Security-Policy: default-src https:;
+```
+
+Reading the raw HTML output or scanning database content may not find all assets. Content loaded asynchronously will not be found. Content Security Policy will find all this content since it is implemented at the browser-level, where assets are loaded.
+
+If you are a WordPress user, the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin implements CSP-Report-Only as you browse the site as an admin. Violation reports are stored in the admin interface.
+
+## Transition embedded content to load over HTTPS
+
+Work through the list of insecure embedded assets. Make sure a secure version of the embedded content is available, and modify it to load over HTTPS.
+
+*What if a user is embedding an image from another website that doesn't serve HTTPS? What are the intellectual property issues at play if they host the image themselves?*
+
+## Verify latest packages
+
+Verify openssl and kernel are latest on server handling TLS for perf optimizations.
 
 ## Testing TLS
 
 Limit your browser to 300ms 3g so you can see the effect of TLS handshakes.
 
-Check that your server has session IDs and session tickets via this command
+## Session Resumption
 
-`openssl s_client -connect ericandrewlewis.com:443 -tls1 -tlsextdebug -status` looking
-for Session-ID and TLS session ticket info. this is for session resumption.
+Openssl comes with a command line SSL client to test a server, `openssl s_client`. You can use this to test session resumption via session identifiers and session tickets.
 
-Session ID data is stored on the server. How do you configure how long to store
-in the cache, and how to eject? Apache has mod_status provides debug output of cache hit rate
-for tls cache.
+ssllabs can also test for this.
+
+This command reconnects to a server five times using the same session identifier to test session caching. Using `-nossl2` [somehow avoids old handshake formats](https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html#using-different-handshake-formats).
+
+```bash
+echo | openssl s_client -connect twitter.com:443 -reconnect -no_ssl2 -no_ticket
+````
+
+or maybe this to limit output.
+
+```bash
+echo | openssl s_client -connect twitter.com:443 -reconnect -no_ssl2 -no_ticket 2> /dev/null | grep 'New\|Reuse'
+```
+
+Servers should share session cache. Read [Cloudflare's article about shared session cache](blog.cloudflare.com/tls-session-resumption-full-speed-and-secure/).
+
+[Tuning session cache](https://timtaubert.de/blog/2014/11/the-sad-state-of-server-side-tls-session-resumption-implementations/)
+
+Session ID data is stored on the server. How do you configure how long to store in the cache, and how to eject? Apache has mod_status provides debug output of cache hit rate for tls cache.
+
+[Session resumption is good for perf but risky as the cache is never purged](https://wiki.mozilla.org/Security/Server_Side_TLS#Session_Resumption).
 
 TLS handshake should take 1 round trip. If it's more than that, fix it.
 
-False start requires various requirements from different browsers. basically
-Npl/alpn and forward secrecy ciphers (ecdhe).
+False start requires various requirements from different browsers. basically Npl/alpn and forward secrecy ciphers (ecdhe).
 
 ## Benchmark crypto on server?
 
@@ -75,30 +88,7 @@ eg. openssl speed sha ecdh`
 
 ## Does your server need a unique IP?
 
-If you want to avoid security warnings in some older browsers (e.g. IE 8 Windows XP and similar),
-you will need a unique IP for your certificate for clients that don't have [SNI support](https://en.wikipedia.org/wiki/Server_Name_Indication).
-
-## Get a private key and SSL certificate
-
-You need a private key and an SSL certificate on your website's server to provide HTTPS.
-
-Check if your web host permits you to submit your own key and certificate. If they do,
-you can create a private key and get a certificate from any certificate authority.
-
-If you don't mind paying $16 per year per hostname, [sslmate](https://sslmate.com/) is
-a great way to purchase SSL certificates.
-
-If you really don't want to pay, [startssl](https://startssl.com) offers free certificates.
-[Here is a guide](https://konklone.com/post/switch-to-https-now-for-free).
-
-Starting November 2015, [Let's Encrypt](letsencrypt.com) will offer free certificates
-with a command line utility.
-
-Include intermediary certificates with your certificate, but not the root certificate.
-
-## Tuning TLS
-
-Verify openssl and kernel are latest on server handling TLS for perf optimizations.
+If you want to avoid security warnings in some older browsers (e.g. IE 8 Windows XP and similar), you will need a unique IP for your certificate for clients that don't have [SNI support](https://en.wikipedia.org/wiki/Server_Name_Indication).
 
 Enable session resumption and false start.
 
@@ -106,15 +96,13 @@ Optimize TLS record size to avoid overflowing a TCP congestion window ([1](https
 
 OCSP stapling
 
-Terminate TLS as close to the user as possible for dynamic requests. I.e. use
-CDNs for dynamic requests?
+Terminate TLS as close to the user as possible for dynamic requests. I.e. use CDNs for dynamic requests?
 
 ## Force users to connect to your site via HTTPS
 
 HTTP Strict Transport Security forces users to always connect to your site securely.
 
-This is a preferred alternative to insecurely redirecting HTTP requests to HTTPS
-via a 301 response.
+This is a preferred alternative to insecurely redirecting HTTP requests to HTTPS via a 301 response.
 
 [Read more about HSTS](https://https.cio.gov/hsts/).
 
@@ -131,20 +119,20 @@ to `https`.
 
 ## Checking security quality
 
-SSL Labs offers [a free report](http://www.dh-test-ssl.com), which will grade
-your TLS implementation.
+SSL Labs offers [a free report](http://www.dh-test-ssl.com), which will grade your TLS implementation.
 
-## Existing Guides
+## Links
 
-[User handbook](https://make.wordpress.org/support/user-manual/web-publishing/https-for-wordpress/)
+[HTTPS for WordPress in the User handbook](https://make.wordpress.org/support/user-manual/web-publishing/https-for-wordpress/)
 
-[WP Beginner](http://www.wpbeginner.com/wp-tutorials/how-to-add-ssl-and-https-in-wordpress/)
+[WP Beginner's HTTPS setup guide](http://www.wpbeginner.com/wp-tutorials/how-to-add-ssl-and-https-in-wordpress/)
 
-[The Federal Government put a helpful website together](https://https.cio.gov/)
+[The Federal Government's HTTPS Everywhere information website](https://https.cio.gov/). Lot of good stuff.
+
+[https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html](Testing with Open SSL). Lot of good commands.
+
+[Mozilla — Server Side TLS](https://wiki.mozilla.org/Security/Server_Side_TLS)
 
 ## Other notes
 
-Placing WordPress behind an HTTPS proxy that requests WordPress over HTTP causes
-WordPress to think it's running over HTTP (i.e. [`is_ssl()`](https://github.com/WordPress/WordPress/blob/master/wp-includes/functions.php#L3748) will return false).
-Modifying `$_SERVER` variables in `wp-config.php` is the suggested configuration.
-See trac tickets #9235, #19654, #31288.
+Placing WordPress behind an HTTPS proxy that requests WordPress over HTTP causes WordPress to think it's running over HTTP (i.e. [`is_ssl()`](https://github.com/WordPress/WordPress/blob/master/wp-includes/functions.php#L3748) will return false). Modifying `$_SERVER` variables in `wp-config.php` is the suggested configuration. See trac tickets #9235, #19654, #31288.
