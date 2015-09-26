@@ -26,7 +26,7 @@ Embedded HTTP content in webpages (images, javascript files, stylesheets) may be
 
 Reading the raw HTML output or scanning database content may not find all assets. Content loaded asynchronously will not be found.
 
-Content Security Policy Report Only, a contortion of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to build a list of embedded HTTP content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
+`Content-Security-Policy-Report-Only`, a contortion of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to build a list of embedded HTTP content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
 
 Content Security Policy Report Only operates similarly, but instead of block assets, the browser serves them to the user while silently sending a report of the policy violations to a pre-defined URL. This allows you to collect embedded insecure content into a list.
 
