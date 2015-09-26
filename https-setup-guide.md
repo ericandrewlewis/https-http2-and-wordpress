@@ -4,7 +4,7 @@
 
 A web server needs a private key and an SSL certificate (which includes a public key) to serve HTTPS.
 
-If the site is hosted by a web hosting provider, look for the host's documentation on how to configure HTTPS. Any good host will allow users to purchase an SSL certificate from a provider of their choosing.
+If the site is served by a web hosting provider, look for the host's documentation on how to configure HTTPS. Any good host will allow users to purchase an SSL certificate from a provider of their choosing.
 
 [sslmate](https://sslmate.com/) automates the SSL key and certificate process, for a price.
 
@@ -28,7 +28,7 @@ Scanning raw HTML output or database content may not find all assets. Content lo
 
 `Content-Security-Policy-Report-Only`, a relative of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to find insecure embedded content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
 
-Content Security Policy Report Only operates similarly, but instead of block assets, the browser serves them to the user while silently sending a report of the policy violations to a pre-defined URL. This allows you to collect insecure embedded content into a list.
+Content-Security-Policy-Report-Only operates in a similar fashion. Instead of block assets, the browser serves them to the user while silently sending a report of the policy violations to a pre-defined URL. This allows you to collect insecure embedded content into a list.
 
 Here's an example of a CSP Report-Only header, assuming you have implemented an endpoint that will handle the report requests.
 
@@ -48,13 +48,17 @@ Work through the list of insecure embedded content. Check that a secure version 
 
 Use [canonical tags](https://support.google.com/webmasters/answer/139066?hl=en) to always use the `https://` version of a webpage.
 
-## Add server-level 301 redirects from http to https
+## Force users to connect to your site via HTTPS
 
+HTTP Strict Transport Security is a mechanism to force users to connect to your site securely, and avoid security downgrade attacks. [Read more about HSTS and how to implement](https://https.cio.gov/hsts/).
 
+## Add 301 redirects from HTTP to HTTPS
 
-## Verify latest packages
+Older clients don't support HSTS, so always 301 redirect HTTP requests to HTTPS.
 
-Verify openssl and kernel are latest on server handling TLS for perf optimizations.
+## Verify latest server packages
+
+The web server's system kernel and openssl packages should be updated to the latest for performance optimizations.
 
 ## Testing TLS
 
@@ -105,16 +109,6 @@ Optimize TLS record size to avoid overflowing a TCP congestion window ([1](https
 OCSP stapling
 
 Terminate TLS as close to the user as possible for dynamic requests. I.e. use CDNs for dynamic requests?
-
-## Force users to connect to your site via HTTPS
-
-HTTP Strict Transport Security forces users to always connect to your site securely.
-
-This is a preferred alternative to insecurely redirecting HTTP requests to HTTPS via a 301 response.
-
-[Read more about HSTS](https://https.cio.gov/hsts/).
-
-HSTS preload list https://hstspreload.appspot.com/
 
 ## SEO-changes
 
