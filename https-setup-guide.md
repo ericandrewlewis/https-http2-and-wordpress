@@ -24,19 +24,19 @@ If you manage the web server configuration, Mozilla has an [HTTPS configuration 
 
 Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`. The secure version is always preferred, as [the protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
 
+Reading the raw HTML output or scanning database content may not find all assets. Content loaded asynchronously will not be found.
+
 Content Security Policy Report Only, a contortion of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to build a list of embedded HTTP content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
 
-Content Security Policy Report Only operates similarly, but instead block assets, the browser serves them to the user while silently sending a report of the policy violations to a server-defined URL. This allows you to collect embedded insecure content into a list.
+Content Security Policy Report Only operates similarly, but instead of block assets, the browser serves them to the user while silently sending a report of the policy violations to a pre-defined URL. This allows you to collect embedded insecure content into a list.
 
-need some example here:
+Here's an example of a CSP Report Only, assuming you have implemented an endpoint that will handle CSP Report-Only requests.
 
 ```
-Content-Security-Policy-Report-Only: default-src https: data: 'unsafe-inline' 'unsafe-eval'; child-src https:; connect-src https:; font-src https: data:; img-src https: data:; media-src https:; object-src https:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'; report-uri http://yourwebsite.com/csp-endpoint;
+Content-Security-Policy-Report-Only: default-src https: data: 'unsafe-inline' 'unsafe-eval'; child-src https:; connect-src https:; font-src https: data:; img-src https: data:; media-src https:; object-src https:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'; report-uri http://yourwebsite.com/csp-report-only-endpoint;
 ```
 
-Reading the raw HTML output or scanning database content may not find all assets. Content loaded asynchronously will not be found. Content Security Policy will find all this content since it is implemented at the browser-level, where assets are loaded.
-
-If you are a WordPress user, the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin implements CSP-Report-Only as you browse the site as an admin. Violation reports are stored in the admin interface.
+If the site is a WordPress site, the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin can be used to collect embedded HTTTP content. It implements CSP-Report-Only as you browse the site as an admin. Violation reports are stored in the admin interface.
 
 ## Transition embedded content to load over HTTPS
 
