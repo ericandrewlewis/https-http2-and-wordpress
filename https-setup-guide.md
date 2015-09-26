@@ -129,7 +129,7 @@ SSL Labs offers [a free report](http://www.dh-test-ssl.com), which will grade yo
 
 [The Federal Government's HTTPS Everywhere information website](https://https.cio.gov/). Lot of good stuff.
 
-[https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html](Testing with Open SSL). Lot of good commands.
+[Testing with Open SSL](https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html). Lot of good commands.
 
 [Mozilla — Server Side TLS](https://wiki.mozilla.org/Security/Server_Side_TLS)
 
