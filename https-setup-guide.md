@@ -22,7 +22,7 @@ If you manage the web server configuration, Mozilla has an [HTTPS configuration 
 
 ## Find embedded HTTP content
 
-Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`. The secure version is always preferred, as [the protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
+Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`. The secure version is always preferred, and [the protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
 
 Scanning raw HTML output or database content may not find all assets. Content loaded asynchronously will be missed.
 
