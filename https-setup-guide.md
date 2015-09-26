@@ -20,29 +20,37 @@ Hosting providers may have administrative interfaces to enable HTTPS.
 
 If you manage the web server configuration, Mozilla has an [HTTPS configuration generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) which produces boilerplate for configuring various web servers to server HTTPS.
 
-## Find embedded HTTP content
+## Find insecure embedded content
 
-Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`. The secure version is always preferred, and [the protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
+Insecure embedded content on a website (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`. The secure version is always preferred, and [the protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
 
 Scanning raw HTML output or database content may not find all assets. Content loaded asynchronously will be missed.
 
-`Content-Security-Policy-Report-Only`, a relative of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to find embedded HTTP content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
+`Content-Security-Policy-Report-Only`, a relative of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to find insecure embedded content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
 
-Content Security Policy Report Only operates similarly, but instead of block assets, the browser serves them to the user while silently sending a report of the policy violations to a pre-defined URL. This allows you to collect embedded insecure content into a list.
+Content Security Policy Report Only operates similarly, but instead of block assets, the browser serves them to the user while silently sending a report of the policy violations to a pre-defined URL. This allows you to collect insecure embedded content into a list.
 
-Here's an example of a CSP Report Only, assuming you have implemented an endpoint that will handle CSP Report-Only requests.
+Here's an example of a CSP Report-Only header, assuming you have implemented an endpoint that will handle the report requests.
 
 ```
-Content-Security-Policy-Report-Only: default-src https: data: 'unsafe-inline' 'unsafe-eval'; child-src https:; connect-src https:; font-src https: data:; img-src https: data:; media-src https:; object-src https:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'; report-uri http://yourwebsite.com/csp-report-only-endpoint;
+Content-Security-Policy-Report-Only: default-src https: data: 'unsafe-inline' 'unsafe-eval'; child-src https:; connect-src https:; font-src https: data:; img-src https: data:; media-src https:; object-src https:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'; report-uri http://yourwebsite.com/csp-report-handler;
 ```
 
-If the site is a WordPress site, the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin can be used to collect embedded HTTTP content. It implements CSP-Report-Only as you browse the site as an admin. Violation reports are stored in the admin interface.
+If the site is a WordPress site, the [HTTPS Mixed Content Detector](https://www.tollmanz.com/wordpress-https-mixed-content-detector/) plugin can be used to collect insecure embedded content. It implements CSP-Report-Only as you browse the site as an admin. Violation reports are stored in the admin interface.
 
-## Transition embedded content to load over HTTPS
+## Transition insecure embedded content to load over HTTPS
 
-Work through the list of insecure embedded assets. Make sure a secure version of the embedded content is available, and modify it to load over HTTPS.
+Work through the list of insecure embedded content. Check that a secure version of the embedded content is available, and modify it to load over HTTPS.
 
 *What if a user is embedding an image from another website that doesn't serve HTTPS? What are the intellectual property issues at play if they host the image themselves?*
+
+## Canonical tags
+
+Use [canonical tags](https://support.google.com/webmasters/answer/139066?hl=en) to always use the `https://` version of a webpage.
+
+## Add server-level 301 redirects from http to https
+
+
 
 ## Verify latest packages
 
@@ -132,6 +140,8 @@ SSL Labs offers [a free report](http://www.dh-test-ssl.com), which will grade yo
 [Testing with Open SSL](https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html). Lot of good commands.
 
 [Mozilla — Server Side TLS](https://wiki.mozilla.org/Security/Server_Side_TLS)
+
+[Speeding up SSL: enabling session reuse](http://vincent.bernat.im/en/blog/2011-ssl-session-reuse-rfc5077.html)
 
 ## Other notes
 
