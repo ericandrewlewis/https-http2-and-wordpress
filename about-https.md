@@ -41,10 +41,12 @@ The digital signature (along with the certificate chain) proves the CA created t
 
 The certificate also includes the web server's public key. If the digital signature is verified, the public key can be trusted as well. The public key is used in encrypting data between the user and the web server. Although attackers might be able to get an encrypted message, they can't decode it. [Learn how public key cryptography works](https://github.com/ericandrewlewis/https-http2-and-wordpress/blob/master/about-public-key-cryptography.md#encrypting-plaintext).
 
+Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
+
+## External Links
+
 [Intro to TLS](http://chimera.labs.oreilly.com/books/1230000000545/ch04.html)
 
 [HTTPS Everywhere](https://www.youtube.com/watch?v=cBhZ6S0PFCY)
 
 [How does HTTPS actually work?](http://robertheaton.com/2014/03/27/how-does-https-actually-work/)
-
-Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
