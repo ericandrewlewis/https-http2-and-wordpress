@@ -20,18 +20,18 @@ Hosting providers may have administrative interfaces to enable HTTPS.
 
 If you manage the web server configuration, Mozilla has an [HTTPS configuration generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) which produces boilerplate for configuring various web servers to server HTTPS.
 
-## Collect a list of embedded HTTP content
+## Finding existing embedded HTTP content
 
 Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`. The secure version is always preferred, as [the protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
 
-Finding every instance of embedded content served over HTTP is a challenge of itself. Thankfully, a mechanism for building a list of insecurely served assets has been implemented: Content Security Policy Report Only, a specific usage of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/). CSP is an HTTP header which defines an embedded content loading policy that a web browser will respect. For example, a policy could dictate the browser should only load image assets over a specific CDN host, and the browser will refuse to load image assets from other hosts.
+Content Security Policy Report Only, a contortion of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/), can be used to build a list of embedded HTTP content. CSP is an HTTP header which defines an embedded content loading policy that a web browser should respect. For example, a policy could dictate that the browser should load image assets only over a specific CDN host, and the browser would block image assets from other hosts.
 
-To build a list of insecure embedded assets, we can define a policy that all assets should be loaded over HTTPS, and use CSP in Report-Only mode, which will send a report of embedded content policy violations to a URL of our choice. This allows you to collate all your embedded insecure content into a list of things to change.
+Content Security Policy Report Only operates similarly, but instead block assets, the browser serves them to the user while silently sending a report of the policy violations to a server-defined URL. This allows you to collect embedded insecure content into a list.
 
 need some example here:
 
 ```
-Content-Security-Policy: default-src https:;
+Content-Security-Policy-Report-Only: default-src https: data: 'unsafe-inline' 'unsafe-eval'; child-src https:; connect-src https:; font-src https: data:; img-src https: data:; media-src https:; object-src https:; script-src https: 'unsafe-inline' 'unsafe-eval'; style-src https: 'unsafe-inline'; report-uri http://yourwebsite.com/csp-endpoint;
 ```
 
 Reading the raw HTML output or scanning database content may not find all assets. Content loaded asynchronously will not be found. Content Security Policy will find all this content since it is implemented at the browser-level, where assets are loaded.
