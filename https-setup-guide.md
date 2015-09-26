@@ -2,19 +2,19 @@
 
 ## Create a private key and SSL certificate
 
-To enable HTTPS on a web server, a private key and an SSL certificate.
+A web server needs a private key and an SSL certificate (which includes a public key) to serve HTTPS.
 
-If the site is hosted by a web hosting provider, check their documentation on how to configure SSL. Some hosts force users to purchase SSL through them. Any good host should allow users to purchase an SSL certificate from a provider of their choosing.
+If the site is hosted by a web hosting provider, look for the host's documentation on how to configure HTTPS. Any good host will allow users to purchase an SSL certificate from a provider of their choosing.
 
-[sslmate](https://sslmate.com/) automates the SSL key and certificate process for a price.
+[sslmate](https://sslmate.com/) automates the SSL key and certificate process, for a price.
 
 Starting in November 2015, [Let's Encrypt](https://letsencrypt.com), a new certificate authority, will offer free certificates and key configuration with a command line utility.
 
 [Start SSL](https://startssl.com) offers free certificates. [Here is a guide](https://konklone.com/post/switch-to-https-now-for-free).
 
-## Configure the site to server over both HTTP and HTTPS
+## Configure the site to serve both HTTP and HTTPS
 
-While transitioning the site, serve content over both HTTP and HTTPS.
+Serve content over both HTTP and HTTPS. You should never stop serving HTTP, although later steps should be taken to send traffic to the HTTPS version of content with the appropriate means.
 
 Hosting providers may have administrative interfaces to enable HTTPS.
 
@@ -22,9 +22,9 @@ If you manage the web server configuration, Mozilla has an [HTTPS configuration 
 
 ## Collect a list of embedded HTTP content
 
-Embedded content in webpages (images, javascript files, stylesheets) may be referenced with an explicit protocol of `http://`. This may be hardcoded in template files or database content. Modify these to load over `https://`, as a secure version is always be preferred. [The protocol relative URL is now an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/).
+Embedded content in webpages (images, javascript files, stylesheets) may be referenced with protocol of `http://`. This could be hardcoded in a file or database content. These references should be changed to load over `https://`, as the secure version is always preferred ([Protocol relative URLs are an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/)).
 
-Finding every instance of embedded content served over HTTP can be challenging. Thankfully, a mechanism for building a list of insecurely served assets is available: Content Security Policy Report Only, a specific usage of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/). CSP is an HTTP header which defines an embedded content loading policy that a web browser will respect. For example, a policy could dictate the browser should only load image assets over a specific CDN host, and the browser will refuse to load image assets from other hosts.
+Finding every instance of embedded content served over HTTP is a challenge of itself. Thankfully, a mechanism for building a list of insecurely served assets has been implemented: Content Security Policy Report Only, a specific usage of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/). CSP is an HTTP header which defines an embedded content loading policy that a web browser will respect. For example, a policy could dictate the browser should only load image assets over a specific CDN host, and the browser will refuse to load image assets from other hosts.
 
 To build a list of insecure embedded assets, we can define a policy that all assets should be loaded over HTTPS, and use CSP in Report-Only mode, which will send a report of embedded content policy violations to a URL of our choice. This allows you to collate all your embedded insecure content into a list of things to change.
 
