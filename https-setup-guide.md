@@ -22,7 +22,7 @@ If you manage the web server configuration, Mozilla has an [HTTPS configuration 
 
 ## Collect a list of embedded HTTP content
 
-Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`, as the secure version is always preferred ([Protocol relative URLs are an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/)).
+Embedded HTTP content in webpages (images, javascript files, stylesheets) may be hardcoded in a file or in database content (e.g. `<img src="http://example.com/image.jpg">`). These references should be changed to load over `https://`, as the secure version is always preferred ([The protocol relative URL is an anti-pattern](http://www.paulirish.com/2010/the-protocol-relative-url/)).
 
 Finding every instance of embedded content served over HTTP is a challenge of itself. Thankfully, a mechanism for building a list of insecurely served assets has been implemented: Content Security Policy Report Only, a specific usage of [Content Security Policy (CSP)](http://www.html5rocks.com/en/tutorials/security/content-security-policy/). CSP is an HTTP header which defines an embedded content loading policy that a web browser will respect. For example, a policy could dictate the browser should only load image assets over a specific CDN host, and the browser will refuse to load image assets from other hosts.
 
