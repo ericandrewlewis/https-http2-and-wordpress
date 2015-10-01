@@ -50,3 +50,7 @@ Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
 [HTTPS Everywhere](https://www.youtube.com/watch?v=cBhZ6S0PFCY)
 
 [How does HTTPS actually work?](http://robertheaton.com/2014/03/27/how-does-https-actually-work/)
+
+[IndieWebCamp HTTPS guide](http://indiewebcamp.com/https)
+
+Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
