@@ -54,3 +54,9 @@ Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
 [IndieWebCamp HTTPS guide](http://indiewebcamp.com/https)
 
 Convinced? Learn [how to setup HTTPS](https-setup-guide.md).
+
+## Stray questions
+
+An EV certificate adds the company's name to the address bar. [see here](https://www.globalsign.com/en/ssl-information-center/what-is-an-extended-validation-certificate/). What reasons would people want an EV cert?
+
+Yes, you can add multiple domain names to one certificate.
