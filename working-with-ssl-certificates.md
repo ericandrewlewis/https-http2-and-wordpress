@@ -26,10 +26,16 @@ Create a private key
 openssl genrsa -out server.key 2048
 ```
 
-Create a certificate
+Create a self-signed certificate
 
 ```bash
 openssl req -new -x509 -key server.key -out server.crt -days 3650
+```
+
+Create a certificate signing request
+
+```bash
+openssl req -out CSR.csr -key server.key -new
 ```
 
 
