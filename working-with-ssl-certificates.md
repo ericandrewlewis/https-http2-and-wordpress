@@ -1,5 +1,7 @@
 # Working with SSL certificates
 
+To work with SSL certificates, install [openSSL](https://www.openssl.org/) from source or with your system's package manager.
+
 ## Converting
 
 Certificates are typically not in human readable form.
