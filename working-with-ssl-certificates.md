@@ -12,11 +12,26 @@ They are typically encoded in either the DER format (binary), or PEM format (bas
 openssl x509 -in cert.crt -inform der -outform pem -out cert.pem
 ```
 
-## View the human readable information in a PEM encoded certificate
+### View the human readable information in a PEM encoded certificate
 
 ```bash
 openssl x509 -in cert.pem -text -noout
 ```
+
+## Create a certificate
+
+Create a private key
+
+```bash
+openssl genrsa -out server.key 2048
+```
+
+Create a certificate
+
+```bash
+openssl req -new -x509 -key server.key -out server.crt -days 3650
+```
+
 
 ## Concatenating certificates
 
