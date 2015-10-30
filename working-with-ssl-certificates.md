@@ -1,20 +1,18 @@
 # Working with SSL certificates
 
+## Converting
+
 Certificates are typically not in human readable form.
 
 They are typically encoded in either the DER format (binary), or PEM format (base64 encoded).
 
-[Converting certificates from one form to another](https://support.ssl.com/Knowledgebase/Article/View/19/0/der-vs-crt-vs-cer-vs-pem-certificates-and-how-to-convert-them)
-
-How to certify an SSL certificate with the intermediary chain?
-
-## Convert DER format to PEM
+### From DER format to PEM
 
 ```bash
 openssl x509 -in cert.crt -inform der -outform pem -out cert.pem
 ```
 
-## View PEM encoded certificate
+## View the human readable information in a PEM encoded certificate
 
 ```bash
 openssl x509 -in cert.pem -text -noout
@@ -22,11 +20,7 @@ openssl x509 -in cert.pem -text -noout
 
 ## Concatenating certificates
 
-You may want to concatenate certificates into a single file, e.g. to verify a
-certificate is good.
-
-Only PEM encoded certificates can be concatenated, so convert as appropriate
-and concatenate them together.
+You may want to concatenate certificates into a single file, e.g. to verify a certificate is good. Note that only PEM encoded certificates can be concatenated.
 
 e.g.
 
@@ -56,3 +50,7 @@ You need a PEM encoded site certificate in `server.pem`.
 ```bash
 openssl verify -verbose -CAfile cacert.pem server.pem
 ```
+
+## External links
+
+[Converting certificates from one form to another](https://support.ssl.com/Knowledgebase/Article/View/19/0/der-vs-crt-vs-cer-vs-pem-certificates-and-how-to-convert-them)
